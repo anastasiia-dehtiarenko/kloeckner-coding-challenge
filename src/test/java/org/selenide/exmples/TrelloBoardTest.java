@@ -38,12 +38,12 @@ public class TrelloBoardTest {
     @Test
     public void createNewBoard(){
 
-        String name = generateName();
+        String boardName = generateName();
 
         TrelloMainPage mainPage = open(baseUrl, TrelloMainPage.class);
         TrelloAllBoardsPage boardsPage = mainPage.login(email, password);
-        TrelloBoardPage boardPage = boardsPage.createNewBoard(name);
-        boardPage.boardTitle(name).shouldBe(Condition.visible);
+        TrelloBoardPage boardPage = boardsPage.createNewBoard(boardName);
+        boardPage.boardTitle(boardName).shouldBe(Condition.visible);
         boardPage.deleteCreatedBoard();
     }
 
@@ -58,7 +58,21 @@ public class TrelloBoardTest {
         TrelloBoardPage boardPage = boardsPage.createNewBoard(boardName);
         boardPage.createNewList(listName).shouldHave(Condition.text(listName));
         boardPage.deleteCreatedBoard();
+    }
 
+    @Test
+    public void createNewCardWithLabel(){
+        String boardName = generateName();
+        String listName = generateName();
+        String cardName = generateName();
+        String label = "yellow";
+
+        TrelloMainPage mainPage = open(baseUrl, TrelloMainPage.class);
+        TrelloAllBoardsPage boardsPage = mainPage.login(email, password);
+        TrelloBoardPage boardPage = boardsPage.createNewBoard(boardName);
+        boardPage.createNewList(listName).shouldHave(Condition.text(listName));
+        boardPage.addNewCardToList(cardName,label).shouldHave(Condition.text(cardName));
+        boardPage.deleteCreatedBoard();
     }
 
 }
