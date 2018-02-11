@@ -7,10 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
-
 import java.util.Random;
-
-import static com.codeborne.selenide.Selenide.getElement;
 import static com.codeborne.selenide.Selenide.open;
 
 @Slf4j
@@ -31,6 +28,13 @@ public class TrelloBoardTest {
     String password = "TrelloTest66";
 
 
+    public String generateName() {
+        int randomValue = new Random().nextInt();
+        String name = "autotest" + randomValue;
+        log.info("Generated name is {}", name);
+        return name;
+    }
+
     @Test
     public void createNewBoard(){
 
@@ -40,12 +44,7 @@ public class TrelloBoardTest {
         TrelloAllBoardsPage boardsPage = mainPage.login(email, password);
         TrelloBoardPage boardPage = boardsPage.createNewBoard(name);
         boardPage.boardTitle(name).shouldBe(Condition.visible);
+        boardPage.deleteCreatedBoard();
     }
 
-    public String generateName() {
-        int randomValue = new Random().nextInt();
-        String name = "autotest" + randomValue;
-        log.info("Generated name is {}", name);
-        return name;
-    }
 }
