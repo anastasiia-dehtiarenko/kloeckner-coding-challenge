@@ -47,4 +47,18 @@ public class TrelloBoardTest {
         boardPage.deleteCreatedBoard();
     }
 
+    @Test
+    public void createNewList(){
+
+        String boardName = generateName();
+        String listName = generateName();
+
+        TrelloMainPage mainPage = open(baseUrl, TrelloMainPage.class);
+        TrelloAllBoardsPage boardsPage = mainPage.login(email, password);
+        TrelloBoardPage boardPage = boardsPage.createNewBoard(boardName);
+        boardPage.createNewList(listName).shouldHave(Condition.text(listName));
+        boardPage.deleteCreatedBoard();
+
+    }
+
 }
