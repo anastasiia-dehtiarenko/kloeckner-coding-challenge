@@ -5,7 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 import static com.codeborne.selenide.Selenide.page;
 
-public class TrelloAllBoardsPage extends TrelloCommonPage{
+public class TrelloAllBoardsPage {
 
     @FindBy(xpath = ".//a[@class='board-tile mod-add']")
     public SelenideElement createNewBoard;

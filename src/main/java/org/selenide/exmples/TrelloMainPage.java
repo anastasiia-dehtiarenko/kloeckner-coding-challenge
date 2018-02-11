@@ -3,10 +3,9 @@ package org.selenide.exmples;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
-
 import static com.codeborne.selenide.Selenide.page;
 
-public class TrelloMainPage {
+public class TrelloMainPage{
 
     @FindBy(xpath = ".//a[@class='global-header-section-button' and text()='Log In']") public SelenideElement goToLoginPage;
     @FindBy(xpath = ".//*[@id='user']") public SelenideElement userTrello;

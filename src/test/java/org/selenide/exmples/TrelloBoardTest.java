@@ -91,7 +91,7 @@ public class TrelloBoardTest {
         boardPage.createNewList(listName1).shouldHave(Condition.text(listName1));
         boardPage.addNewCardToList(cardName,label).shouldHave(Condition.text(cardName));
         boardPage.createNewList(listName2);
-        boardPage.dragAndDropCardToAnotherList(cardName, listName2);
+        boardPage.moveCardToAnotherList(cardName, listName2);
         boardPage.deleteCreatedBoard();
 
 

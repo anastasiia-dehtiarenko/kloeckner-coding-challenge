@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 
-public class TrelloBoardPage extends TrelloCommonPage{
+public class TrelloBoardPage{
 
     @FindBy(xpath = ".//a[@class='board-menu-navigation-item-link js-open-more']") public SelenideElement openMoreLink;
     @FindBy(xpath = ".//a[@class='board-menu-navigation-item-link js-close-board']") public SelenideElement closeBoardButton;
@@ -54,7 +54,7 @@ public class TrelloBoardPage extends TrelloCommonPage{
         return $(By.xpath(".//span[@class='list-card-title js-card-name' and text()='"+ cardName +"']"));
     }
 
-    public SelenideElement dragAndDropCardToAnotherList(String cardName, String listName){
+    public SelenideElement moveCardToAnotherList(String cardName, String listName){
         $(By.xpath(".//span[@class='list-card-title js-card-name' and text()='" + cardName + "']")).
                 dragAndDropTo($x(".//textarea[@class='list-header-name mod-list-name js-list-name-input' and text()='" + listName + "']"));
         return $(By.xpath(".//span[text()='" + cardName + "']"));
