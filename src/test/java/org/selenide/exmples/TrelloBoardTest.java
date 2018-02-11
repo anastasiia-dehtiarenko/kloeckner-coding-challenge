@@ -62,6 +62,7 @@ public class TrelloBoardTest {
 
     @Test
     public void createNewCardWithLabel(){
+
         String boardName = generateName();
         String listName = generateName();
         String cardName = generateName();
@@ -73,6 +74,27 @@ public class TrelloBoardTest {
         boardPage.createNewList(listName).shouldHave(Condition.text(listName));
         boardPage.addNewCardToList(cardName,label).shouldHave(Condition.text(cardName));
         boardPage.deleteCreatedBoard();
+    }
+
+    @Test
+    public void moveCardToAnotherList(){
+
+        String boardName = generateName();
+        String listName1 = generateName();
+        String listName2 = generateName();
+        String cardName = generateName();
+        String label = "red";
+
+        TrelloMainPage mainPage = open(baseUrl, TrelloMainPage.class);
+        TrelloAllBoardsPage boardsPage = mainPage.login(email, password);
+        TrelloBoardPage boardPage = boardsPage.createNewBoard(boardName);
+        boardPage.createNewList(listName1).shouldHave(Condition.text(listName1));
+        boardPage.addNewCardToList(cardName,label).shouldHave(Condition.text(cardName));
+        boardPage.createNewList(listName2);
+        boardPage.dragAndDropCardToAnotherList(cardName, listName2);
+        boardPage.deleteCreatedBoard();
+
+
     }
 
 }
